@@ -59,6 +59,8 @@ Hello from C
 Fortran returns 5
  ```
 
+## With a callback function:
+This could be used, for example, for the Fortran subroutine to check back with the C++ periodically, and report progress or see if the user wants to cancel.
 
 First the C++ part. This has two parts: a "main" function, and a "callback":
 
