@@ -131,3 +131,28 @@ Hello from C
 Hello from callback!
  C Says:            1
  ```
+ 
+ ## With additional libraries
+ Using libraries is trivial when they're added to the Fortran part. When adding to the C++ part, it's more challenging, since the last compilation step is done with `gfortran`. To compile with additional libraries in the C++ part, do:
+ ```Batchfile
+gcc -c .\c_caller.cc
+gfortran .\c_caller.o .\fortran_function.f90 -o test.exe -llibname
+.\test.exe
+```
+We add to the last compiler calls (it won't hurt it to add to `gcc` call either, but it won't change anything). The `gfortran` doesn't intercept the call directly - it passes things on to the linker `ld`. What this all means - we can do the final compilation with either `gcc` or `gfortran`, with one caveat: `gcc` needs one library which is provided by default to `gfortran`, which is `-lgfortran`. If we do:
+ ```Batchfile
+gfortran .\fortran_function.f90 -c
+gcc .\c_caller.cc .\fortran_function.o -llibname -o test.exe
+```
+We will see an error:
+```
+undefined reference to `_gfortran_st_write'
+undefined reference to `_gfortran_transfer_character_write'
+undefined reference to `_gfortran_st_write_done'
+```
+
+But add `-lgfortran` and all is well:
+ ```Batchfile
+gfortran .\fortran_function.f90 -c
+gcc .\c_caller.cc .\fortran_function.o -llibname -lgfortran -o test.exe
+```
