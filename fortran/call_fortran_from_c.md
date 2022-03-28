@@ -167,4 +167,4 @@ gcc .\c_caller.cc .\fortran_function.o -llibname -lgfortran -o test.exe
 ```
 
 # References
-A good example is provided at [https://craftofcoding.wordpress.com/2018/01/29/interoperability-calling-fortran-from-c-i/].
+A good example is provided at https://craftofcoding.wordpress.com/2018/01/29/interoperability-calling-fortran-from-c-i/. A lot of additional details on this topic are provided in [the GCC documentation](https://gcc.gnu.org/onlinedocs/gcc-4.6.2/gfortran/Interoperability-with-C.html#Interoperability-with-C). 
