@@ -58,6 +58,14 @@ Hello from C
  Hello from Fortran
 Fortran returns 5
  ```
+### Compiling with GCC
+Note that the compilation order may be reversed, so that GCC does the final step. This may feel more intuitive, but "behind the scenes" it actually doesn't change too much. If compiling a `.o` file from Fortran using `gcc`, we need to add the `-lgfortran` switch, to let `gcc` be aware of some function calls within the Fortran files. For the above code, we can do:
+
+```Batchfile
+gfortran .\fortran_function.f90
+gcc -c .\c_caller.cc .\fortran_function.o -o test.exe
+.\test.exe
+```
 
 ## With a callback function:
 This could be used, for example, for the Fortran subroutine to check back with the C++ periodically, and report progress or see if the user wants to cancel.
