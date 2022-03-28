@@ -165,3 +165,6 @@ But add `-lgfortran` and all is well:
 gfortran .\fortran_function.f90 -c
 gcc .\c_caller.cc .\fortran_function.o -llibname -lgfortran -o test.exe
 ```
+
+# References
+A good example is provided at [https://craftofcoding.wordpress.com/2018/01/29/interoperability-calling-fortran-from-c-i/].
