@@ -1,5 +1,7 @@
 # Calling C code from Fortran
 
+There is less information on the web about this than there is for [Calling into Fortran from C++](call_fortran_from_c.md). It seems that most would prefer to have their `main()` be written in C/C++, and call into a few specialized Fortran functions as needed. However, there are use cases for both, and no need to restrict to one method.
+
 `fortran_program.f90`:
 ```Fortran Free Form
 program fortran_program
@@ -61,3 +63,7 @@ gfortran .\fortran_program.f90
 gcc -c .\c_function.cc .\fortran_program.o -o test.exe
 .\test.exe
 ```
+
+# References
+This method is described in _Guide to Fortran 2008 Programming_ by Walter S. Brainerd. However, in this description, the `extern "C"` line is missing (perhaps because the author is using a C compiler here, not C++? In any case, addition of `extern "C"` lets this example compile.
+
