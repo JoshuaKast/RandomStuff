@@ -52,3 +52,12 @@ Outputs:
 Hello from C
  C Returned value:           3
 ```
+
+### Compiling with GCC
+Note that the compilation order may be reversed, so that GCC does the final step. If compiling a `.o` file from Fortran using `gcc`, we need to add the `-lgfortran` switch, to let `gcc` be aware of some function calls within the Fortran files. For the above code, we can do:
+
+```Batchfile
+gfortran .\fortran_program.f90
+gcc -c .\c_function.cc .\fortran_program.o -o test.exe
+.\test.exe
+```
